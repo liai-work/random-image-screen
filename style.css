@@ -1,0 +1,104 @@
+/* =============================================================================
+ * style.css — 随机图片占屏
+ * 全屏纯黑背景；禁止滚动 / 缩放 / 选中；图片统一绝对定位。
+ * ============================================================================= */
+
+/* ------------------------------ 基础重置 ------------------------------ */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;        /* 纯黑背景 */
+  overflow: hidden;        /* 禁止滚动 */
+}
+
+body {
+  /* 动态视口高度：手机浏览器地址栏显示/隐藏时都能铺满整屏；
+     不支持 dvh 的旧浏览器会自动沿用上面 html,body 规则里的 height: 100% */
+  height: 100dvh;
+
+  /* 禁止文本选中、长按选中、长按弹出菜单 */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+
+  /* 禁止触摸手势（滚动、双指缩放、双击缩放）以及滚动回弹 */
+  touch-action: none;
+  overscroll-behavior: none;
+
+  color: #fff;
+  font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", sans-serif;
+}
+
+/* ------------------------------ 图片容器 ------------------------------ */
+#stage {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* ------------------------------ 随机图片 ------------------------------ */
+#stage img {
+  position: absolute;         /* left / top / width / height / z-index 由 JS 设置 */
+  display: block;
+  pointer-events: none;       /* 让双击、长按等手势直接落到页面上，而不是图片上 */
+  -webkit-user-drag: none;    /* 桌面端禁止拖拽图片 */
+}
+
+/* --------------------------- 覆盖层通用规则 --------------------------- */
+[hidden] {
+  display: none !important;
+}
+
+/* --------------------------- 图片加载失败提示 --------------------------- */
+#error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ff6b6b;             /* 黑底上的柔和红，保证可读性 */
+  z-index: 2147483000;
+}
+
+/* --------------------------- 退出后的“已结束”提示 --------------------------- */
+#ended {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.72);   /* 半透明遮罩，仍能看见定格画面 */
+  z-index: 2147483001;
+}
+
+#ended p {
+  margin: 0;
+}
+
+#ended .ended-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+#ended .ended-tip {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
