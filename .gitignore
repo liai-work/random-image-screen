@@ -1,0 +1,15 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器 / IDE
+.idea/
+.vscode/
+
+# 依赖（本项目是纯静态页面，正常不会产生）
+node_modules/
+
+# 工具产生的状态目录（安全扫描插件等）
+.mimosa/
+
+# 注意：assets/ 目录和 assets/image.jpg 必须提交到仓库，不要忽略它们。
