@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- 移动端适配：按设备宽度渲染，禁止手动缩放 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <title>随机图片占屏</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 所有随机图片都会被插入到这个容器里，位置/大小/z-index 全部由 JS 设置 -->
+  <div id="stage"></div>
+
+  <!-- 图片加载失败时显示（默认隐藏，JS 会在出错时显示它） -->
+  <div id="error" role="alert" hidden></div>
+
+  <!-- 退出（ESC / 双击）后显示的提示（默认隐藏） -->
+  <div id="ended" role="alert" hidden>
+    <p class="ended-title">已结束</p>
+    <p class="ended-tip">刷新或重新打开页面可重新开始</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
